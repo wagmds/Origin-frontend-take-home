@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SavingPlan from '~/components/SavingPlan/SavingPlan';
+import SavingPlan from './components/SavingPlan/SavingPlan';
 import '~/components/styles/app.scss';
 import '~/components/styles/header.scss';
 
