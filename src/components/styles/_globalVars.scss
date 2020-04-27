@@ -1,0 +1,9 @@
+@import './_colors.scss';
+
+$space: calc(15vw + 15vh);
+$base_padding_hor: 3.2vw;
+$base_padding_hor_mobile: 7vw;
+$logo_height: calc((#{$space} / 35) + 20px);
+$radius: 2px;
+$border: 1px solid $color_light_hard;
+$p: calc((#{$space} / 60) + 10px);

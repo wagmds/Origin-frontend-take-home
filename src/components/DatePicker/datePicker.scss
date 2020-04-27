@@ -1,0 +1,232 @@
+@import '../styles/_colors.scss';
+@import '../styles/_globalVars.scss';
+
+.datePicker {
+  display: flex;
+  flex-direction: column;
+
+  & button {
+    letter-spacing: -0.01em;
+    height: 100%;
+
+    & img {
+      width: calc(((#{$space} / 35) + 7px) * 0.5);
+      transition: all 0.2s ease-out;
+    }
+
+    &:active {
+      & img {
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  & .back {
+    flex: 20;
+    background: $color_light_hard;
+
+    &:disabled {
+      background: $color_light;
+      & img {
+        opacity: 0.3;
+      }
+    }
+  }
+  & .forward {
+    flex: 20;
+    background: $color_light_hard;
+    transform: rotate(180deg);
+  }
+  & .pickerDisplay {
+    flex: 60;
+    flex-flow: column;
+    line-height: line-heigth;
+    position: relative;
+
+    &:focus {
+      box-shadow: inset 0 0 0.5vh rgba($color_primary_soft, 0.15);
+    }
+
+    & p {
+      font-size: calc(#{$p} * 1.2);
+      text-transform: capitalize;
+      line-height: 1.33em;
+
+      & small {
+        font-weight: normal;
+        font-size: 0.7em;
+        line-height: 0.7em;
+      }
+    }
+  }
+
+  & .innerHolder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: 6vh;
+    margin-top: 0.5vh;
+    border: $border;
+    border-radius: calc(#{$radius} * 2);
+  }
+
+  & .picker {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: 2;
+    width: calc(100% + 2px);
+    background: $color_light_soft;
+    border: $border;
+    border-radius: calc(#{$radius} * 2);
+    // transition: all 0.2s ease-in-out;
+    animation: fade 0.25s ease-in-out;
+    animation-iteration-count: 1;
+
+    & .row {
+      height: 6vh;
+
+      & .back,
+      .forward {
+        background: transparent;
+      }
+
+      & .pickerDisplay {
+        cursor: default;
+
+        & p {
+          color: $color_primary_soft;
+        }
+      }
+    }
+
+    & ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1vh 2vw 2.5vh;
+      box-shadow: 0 1vh 3vh rgba(black, 0.1);
+      z-index: 1;
+
+      & li {
+        user-select: none;
+        cursor: pointer;
+        width: 33.3%;
+        text-align: center;
+        padding: 0.75vh 0;
+        border-radius: 100px;
+        transition: all 0.15s ease-in-out;
+
+        &:hover {
+          background: $color_primary;
+
+          & p {
+            color: $color_light_soft;
+          }
+        }
+
+        &:active {
+          background: $color_primary_soft;
+          color: $color_light_soft;
+
+          & p {
+            color: $color_light_soft;
+          }
+        }
+      }
+
+      & .disabled {
+        cursor: default;
+        & p {
+          color: $color_dark_soft;
+        }
+
+        &:hover {
+          background: inherit;
+
+          & p {
+            color: $color_dark_soft;
+          }
+        }
+      }
+
+      & .current {
+        background: $color_primary_soft;
+
+        & p {
+          color: $color_light_soft;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 280px) and (max-width: 679px) and (orientation: portrait) {
+  .datePicker {
+    & button {
+      & img {
+        width: calc(((#{$space} / 35) + 7px) * 0.75);
+      }
+    }
+
+    & .back,
+    .forward {
+      flex: 15;
+    }
+
+    & .pickerDisplay {
+      flex: 70;
+
+      & p {
+        font-size: calc(#{$p} * 1.4);
+      }
+    }
+
+    & .innerHolder {
+      height: 7vh;
+    }
+
+    & .picker {
+      position: absolute;
+
+      & .row {
+        height: 7vh;
+      }
+
+      & ul {
+        padding: 2vh 10vw 3.5vh;
+
+        & li {
+          width: 25%;
+          padding: 1.5vh 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-height: 280px) and (max-height: 679px) and (orientation: landscape) {
+  .datePicker {
+    & .back,
+    .forward {
+      flex: 15;
+    }
+
+    & .innerHolder {
+      height: 7vw;
+    }
+
+    & .picker {
+      & .row {
+        height: 7vw;
+      }
+
+      & ul {
+        & li {
+          padding: 0.75vw 0;
+        }
+      }
+    }
+  }
+}
